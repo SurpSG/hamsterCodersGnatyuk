@@ -18,45 +18,23 @@ import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
 
 /**
  * Created by Sergiy on 20-Oct-14.
+ *
+ *  Class that generates HttpResponse object and do response.
+ *  Specific HttpResponse should be created in child classes.
  */
 public abstract class AResponse {
 
     protected HttpResponse response;
     protected HttpRequest request;
-    private long timeToSend;
 
     public AResponse(HttpRequest request) {
         this.request = request;
         response = createHttpResponseObject();
     }
 
-
     protected abstract HttpResponse createHttpResponseObject();
 
     public void response(ChannelHandlerContext ctx) {
-
-        writeAndCloseConnectionIfNotKeepAlive(ctx);
-    }
-
-    protected void writeAndCloseConnectionIfNotKeepAlive(ChannelHandlerContext ctx){
-        timeToSend = System.currentTimeMillis();
-        writeAndFlush(ctx);
-
-    }
-
-    protected void  writeAndFlush(ChannelHandlerContext ctx){
-
-        ChannelFutureListener CLOSE = new ChannelFutureListener() {
-            @Override
-            public void operationComplete(ChannelFuture future) {
-                future.channel().close();
-                timeToSend = System.currentTimeMillis() - timeToSend;
-            }
-        };
-        ctx.write(response).addListener(CLOSE);
-    }
-
-    public long getTimeToSend() {
-        return timeToSend;
+        ctx.write(response).addListener(ChannelFutureListener.CLOSE);
     }
 }

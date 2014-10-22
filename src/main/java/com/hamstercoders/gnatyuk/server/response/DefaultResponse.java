@@ -17,6 +17,9 @@ import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
 
 /**
  * Created by Sergiy on 19-Oct-14.
+ *
+ * Default response create HttpResponse object
+ * that contains HTTP header information
  */
 public class DefaultResponse extends AResponse{
 

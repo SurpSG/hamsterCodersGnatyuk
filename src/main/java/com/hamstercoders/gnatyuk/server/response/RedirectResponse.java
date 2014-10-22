@@ -38,9 +38,7 @@ public class RedirectResponse extends AResponse {
         }
 
         FullHttpResponse response = new DefaultFullHttpResponse(HTTP_1_1, FOUND);
-
         response.headers().set(LOCATION, urlForRedirect);
-
 
         ServerStatistic.getInstance().addRedirectInfo(urlForRedirect);
 

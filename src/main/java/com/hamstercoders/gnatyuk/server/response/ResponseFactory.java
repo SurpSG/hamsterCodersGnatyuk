@@ -5,6 +5,10 @@ import io.netty.handler.codec.http.QueryStringDecoder;
 
 /**
  * Created by Sergiy on 18-Oct-14.
+ *
+ * HttpResponse factory that creates AResponse object.
+ * Concrete class for creating AResponse object determines
+ * according to request URL
  */
 public class ResponseFactory {
 
@@ -48,9 +52,5 @@ public class ResponseFactory {
 
     public AResponse getResponse(){
         return determineResponse(action);
-    }
-
-    public String getRequestUri() {
-        return requestUri;
     }
 }
