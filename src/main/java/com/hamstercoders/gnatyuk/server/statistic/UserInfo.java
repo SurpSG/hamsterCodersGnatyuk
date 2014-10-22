@@ -12,24 +12,31 @@ public class UserInfo {
     private String ip;
 
     private int totalRequests;
-    private Date lastRequest;
+    private Date lastRequestTime;
 
     private Set<String> uniqueRequests;
 
     public UserInfo(String ip){
-        this.ip = ip;
         uniqueRequests = new HashSet<>();
-        lastRequest = new Date();
+        lastRequestTime = new Date();
+        this.ip = ip;
     }
 
-    public void addRequest(String request, long timeInMilliseconds){
+    public void setLastRequestTime(long lastRequestTime) {
+        this.lastRequestTime = new Date(lastRequestTime) ;
+    }
+
+    public void addRequest(String request){
         totalRequests++;
-        lastRequest = new Date(timeInMilliseconds);
         uniqueRequests.add(request);
     }
 
-    public Date getLastRequest() {
-        return lastRequest;
+    public String getIp() {
+        return ip;
+    }
+
+    public Date getLastRequestTime() {
+        return lastRequestTime;
     }
 
     public int getTotalRequests() {

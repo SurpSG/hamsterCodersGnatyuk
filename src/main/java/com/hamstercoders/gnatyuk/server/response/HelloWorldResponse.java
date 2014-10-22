@@ -1,8 +1,6 @@
 package com.hamstercoders.gnatyuk.server.response;
 
 import io.netty.buffer.Unpooled;
-import io.netty.channel.ChannelFutureListener;
-import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.http.*;
 import io.netty.util.CharsetUtil;
 
@@ -15,18 +13,32 @@ import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
 /**
  * Created by Sergiy on 18-Oct-14.
  */
-public class HelloWorldResponse extends DefaultResponse{
+public class HelloWorldResponse extends AResponse{
 
-    public static final long RESPONSE_DELAY = 1000;//TODO 10 sec
+    public static final long RESPONSE_DELAY = 10000;//TODO 10 sec
     public static final String HELLO_WORLD_MESSAGE = "Hello World!";
-
-    protected final StringBuilder buf = new StringBuilder();
-
 
     public HelloWorldResponse(HttpRequest request){
         super(request);
         sleep(RESPONSE_DELAY);
-        createResponse();
+    }
+
+    @Override
+    protected HttpResponse createHttpResponseObject() {
+        String buf = createResponseMessage();
+        boolean keepAlive = HttpHeaders.isKeepAlive(request);
+        FullHttpResponse response = new DefaultFullHttpResponse(
+                HTTP_1_1, OK,
+                Unpooled.copiedBuffer(buf, CharsetUtil.UTF_8));
+
+        response.headers().set(CONTENT_TYPE, "text/plain; charset=UTF-8");
+
+        if (keepAlive) {
+            response.headers().set(CONTENT_LENGTH, response.content().readableBytes());
+            response.headers().set(CONNECTION, HttpHeaders.Values.KEEP_ALIVE);
+        }
+
+        return response;
     }
 
     private void sleep(long time){
@@ -37,17 +49,8 @@ public class HelloWorldResponse extends DefaultResponse{
         }
     }
 
-    @Override
-    public void response(ChannelHandlerContext ctx) {
-
-        boolean writeResponseSuccess = writeResponse(buf, ctx);
-        if (!writeResponseSuccess) {
-            ctx.writeAndFlush(Unpooled.EMPTY_BUFFER).addListener(ChannelFutureListener.CLOSE);
-        }
-    }
-
-    private void createResponse(){
-        buf.append(HELLO_WORLD_MESSAGE);
+    private String createResponseMessage(){
+        return HELLO_WORLD_MESSAGE;
     }
 
 

@@ -18,34 +18,14 @@ import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
 /**
  * Created by Sergiy on 19-Oct-14.
  */
-public class DefaultResponse {
-
-    protected HttpRequest request;
-
-    private StringBuilder buf = new StringBuilder();
+public class DefaultResponse extends AResponse{
 
     public DefaultResponse(HttpRequest request) {
-        this.request = request;
+        super(request);
     }
 
-
-    public void response(ChannelHandlerContext ctx) {
-        prepareResponseData();
-        writeAndCloseConnectionIfNotKeepAlive(ctx);
-    }
-
-
-
-    protected void response(ChannelHandlerContext ctx, String message){
-        prepareResponseData();
-        buf.append("\n\r"+message);
-        writeAndCloseConnectionIfNotKeepAlive(ctx);
-    }
-
-
-
-    protected boolean writeResponse(StringBuilder buf, ChannelHandlerContext ctx) {
-        // Decide whether to close the connection or not.
+    protected HttpResponse createHttpResponseObject(){
+        StringBuilder buf = prepareResponseData();
         boolean keepAlive = HttpHeaders.isKeepAlive(request);
         // Build the response object.
         FullHttpResponse response = new DefaultFullHttpResponse(
@@ -55,27 +35,14 @@ public class DefaultResponse {
         response.headers().set(CONTENT_TYPE, "text/plain; charset=UTF-8");
 
         if (keepAlive) {
-            // Add 'Content-Length' header only for a keep-alive connection.
             response.headers().set(CONTENT_LENGTH, response.content().readableBytes());
-            // Add keep alive header as per:
-            // - http://www.w3.org/Protocols/HTTP/1.1/draft-ietf-http-v11-spec-01.html#Connection
             response.headers().set(CONNECTION, HttpHeaders.Values.KEEP_ALIVE);
         }
-
-        // Write the response.
-        ctx.write(response);
-        return keepAlive;
+        return response;
     }
 
-    private void writeAndCloseConnectionIfNotKeepAlive(ChannelHandlerContext ctx){
-        if (!writeResponse(buf, ctx)) {
-            // If keep-alive is off, close the connection once the content is fully written.
-            ctx.writeAndFlush(Unpooled.EMPTY_BUFFER).addListener(ChannelFutureListener.CLOSE);
-        }
-    }
-
-    private void prepareResponseData(){
-
+    private StringBuilder prepareResponseData(){
+        StringBuilder buf = new StringBuilder();
         buf.setLength(0);
         buf.append("WELCOME TO THE WEB SERVER\r\n");
         buf.append("===================================\r\n");
@@ -108,6 +75,7 @@ public class DefaultResponse {
         }
 
         appendDecoderResult(buf, request);
+        return buf;
     }
 
 

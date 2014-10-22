@@ -47,7 +47,7 @@ import io.netty.handler.ssl.util.SelfSignedCertificate;
  * or load it from the file system using a web browser.
  *
  * <h3>Using a web server</h3>
- * To com CORS support you can serve the file {@code src/main/resources/cors/cors.html}
+ * To test CORS support you can serve the file {@code src/main/resources/cors/cors.html}
  * using a web server. You can then add a new host name to your systems hosts file, for
  * example if you are on Linux you may update /etc/hosts to add an addtional name
  * for you local system:

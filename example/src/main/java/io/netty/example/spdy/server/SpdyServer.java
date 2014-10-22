@@ -45,7 +45,7 @@ import java.util.Arrays;
  *     ./run-example.sh spdy-server
  * </pre>
  * <p>
- * Once started, you can com the server with your
+ * Once started, you can test the server with your
  * <a href="http://en.wikipedia.org/wiki/SPDY#Browser_support_and_usage">SPDY enabled web browser</a> by navigating
  * to <a href="https://localhost:8443/">https://localhost:8443/</a>
  */

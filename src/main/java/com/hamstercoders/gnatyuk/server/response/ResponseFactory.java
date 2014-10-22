@@ -15,10 +15,12 @@ public class ResponseFactory {
     private QueryStringDecoder queryStringDecoder;
     private HttpRequest httpRequest;
     private String action;
+    private String requestUri;
 
     public ResponseFactory(HttpRequest request){
         httpRequest = request;
-        queryStringDecoder = new QueryStringDecoder(request.getUri());
+        requestUri = request.getUri();
+        queryStringDecoder = new QueryStringDecoder(requestUri);
         action = parseAction();
     }
 
@@ -31,13 +33,12 @@ public class ResponseFactory {
         return "";
     }
 
-    private DefaultResponse determineResponse(String row){
+    private AResponse determineResponse(String row){
         switch (row){
             case HELLO_RESPONSE:
                 return new HelloWorldResponse(httpRequest);
             case STATISTIC_RESPONSE:
-//                return new StatusResponse(httpRequest);
-                break;
+                return new StatusResponse(httpRequest);
             case REDIRECT_RESPONSE:
                 return  new RedirectResponse(httpRequest);
 
@@ -45,8 +46,11 @@ public class ResponseFactory {
         return new DefaultResponse(httpRequest);
     }
 
-    public DefaultResponse getResponse(){
+    public AResponse getResponse(){
         return determineResponse(action);
     }
 
+    public String getRequestUri() {
+        return requestUri;
+    }
 }

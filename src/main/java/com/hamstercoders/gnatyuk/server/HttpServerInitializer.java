@@ -16,12 +16,16 @@
 package com.hamstercoders.gnatyuk.server;
 
 import com.hamstercoders.gnatyuk.server.handler.HttpServerHandler;
+import com.hamstercoders.gnatyuk.server.handler.TrafficHandler;
+import com.hamstercoders.gnatyuk.server.statistic.ConnectionInfo;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.handler.codec.http.HttpRequestDecoder;
 import io.netty.handler.codec.http.HttpResponseEncoder;
 import io.netty.handler.ssl.SslContext;
+import io.netty.handler.traffic.ChannelTrafficShapingHandler;
+
 
 public class HttpServerInitializer extends ChannelInitializer<SocketChannel> {
 
@@ -33,16 +37,19 @@ public class HttpServerInitializer extends ChannelInitializer<SocketChannel> {
 
     @Override
     public void initChannel(SocketChannel ch) {
+
         ChannelPipeline p = ch.pipeline();
+
         if (sslCtx != null) {
             p.addLast(sslCtx.newHandler(ch.alloc()));
         }
+
+        ConnectionInfo connectionInfo = new ConnectionInfo();
+
+        p.addLast(new TrafficHandler(connectionInfo, 0,0));
         p.addLast(new HttpRequestDecoder());
-        // Uncomment the following line if you don't want to handle HttpChunks.
-        //p.addLast(new HttpObjectAggregator(1048576));
         p.addLast(new HttpResponseEncoder());
-        // Remove the following line if you don't want automatic content compression.
-        //p.addLast(new HttpContentCompressor());
-        p.addLast(new HttpServerHandler());
+        p.addLast(new HttpServerHandler(connectionInfo));
+
     }
 }

@@ -34,7 +34,7 @@ import io.netty.handler.ssl.util.SelfSignedCertificate;
 import java.util.Arrays;
 
 /**
- * A HTTP/2 Server that responds to requests with a Hello World. Once started, you can com the
+ * A HTTP/2 Server that responds to requests with a Hello World. Once started, you can test the
  * server with the example client.
  */
 public final class Http2Server {

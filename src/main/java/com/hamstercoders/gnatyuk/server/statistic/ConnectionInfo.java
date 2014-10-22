@@ -9,16 +9,17 @@ public class ConnectionInfo {
     private String ip;
     private String uri;
     private Date timestamp;
-    private int sentBytes;
-    private int receivedBytes;
-    private double speed;// bytes/sec
+    private long sentBytes;
+    private long receivedBytes;
+    private int speedWrite;// KB/sec
+    private int speedRead;// KB/sec
 
 
     public void setIp(String ip) {
         this.ip = ip;
     }
 
-    public void setReceivedBytes(int receivedBytes) {
+    public void setReceivedBytes(long receivedBytes) {
         this.receivedBytes = receivedBytes;
     }
 
@@ -26,7 +27,7 @@ public class ConnectionInfo {
         this.timestamp = timestamp;
     }
 
-    public void setSentBytes(int sentBytes) {
+    public void setSentBytes(long sentBytes) {
         this.sentBytes = sentBytes;
     }
 
@@ -34,7 +35,52 @@ public class ConnectionInfo {
         this.uri = uri;
     }
 
-    public void setSpeed(double speed) {
-        this.speed = speed;
+    public void setSpeedRead(int speedRead) {
+        this.speedRead = speedRead;
+    }
+
+    public void setSpeedWrite(int speedWrite) {
+        this.speedWrite = speedWrite;
+    }
+
+    public String getUri() {
+        return uri;
+    }
+
+    public String getIp() {
+        return ip;
+    }
+
+    public Date getTimestamp() {
+        return timestamp;
+    }
+
+    public int getSpeedRead() {
+        return speedRead;
+    }
+
+    public int getSpeedWrite() {
+        return speedWrite;
+    }
+
+    public long getReceivedBytes() {
+        return receivedBytes;
+    }
+
+    public long getSentBytes() {
+        return sentBytes;
+    }
+
+    @Override
+    public String toString() {
+        return "ConnectionInfo["
+                +"ip='"+ip+"' "
+                +"uri='"+uri+"' "
+                +"timestamp='"+timestamp+"' "
+                +"sentBytes='"+sentBytes+"' "
+                +"receivedBytes='"+receivedBytes+"' "
+                +"speedWrite='"+speedWrite+"' "
+                +"speedRead='"+speedRead+"'"
+                +"]";
     }
 }

@@ -34,7 +34,7 @@ import java.net.URI;
 
 /**
  * A simple HTTP client that prints out the content of the HTTP response to
- * {@link System#out} to com {@link HttpSnoopServer}.
+ * {@link System#out} to test {@link HttpSnoopServer}.
  */
 public final class HttpSnoopClient {
 
