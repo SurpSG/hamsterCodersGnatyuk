@@ -24,10 +24,15 @@ hamsterCodersGnatyuk
 
 Все это (вместе с особенностями имплементации в текстовом виде) выложить на github, приложить к этому:
 
-скриншоты как выглядят станицы /status в рабочем приложении
 
 скриншот результата выполнения команды ab – c 100 – n 10000 http://somedomain/status
+![ScreenShot](https://raw.github.com/SurpSG/hamsterCodersGnatyuk/master/Screenshot AB test 2014-10-22 14.07.21.png)
 
 еще один скриншот станицы /status, но уже после выполнение команды ab из предыдущего пункта
+![ScreenShot](https://raw.github.com/SurpSG/hamsterCodersGnatyuk/master/Screenshot Status page 2014-10-22 14.09.09.png)
 
-![Alt text](/blob/master/Screenshot%20AB%20test%202014-10-22%2014.07.21.png?raw=true "AB test")
+скриншоты как выглядят станицы /status в рабочем приложении
+![ScreenShot](https://raw.github.com/SurpSG/hamsterCodersGnatyuk/master/Screenshot status page 2014-10-22 14.17.50.png)
+
+
+
