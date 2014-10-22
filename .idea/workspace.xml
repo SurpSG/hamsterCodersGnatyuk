@@ -29,8 +29,8 @@
       <file leaf-file-name="HttpServer.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/hamstercoders/gnatyuk/server/HttpServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.33741647" vertical-offset="37" max-vertical-offset="935">
-              <caret line="34" column="18" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="18" />
+            <state vertical-scroll-proportion="0.62138087" vertical-offset="20" max-vertical-offset="918">
+              <caret line="48" column="56" selection-start-line="48" selection-start-column="56" selection-end-line="48" selection-end-column="56" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -745,12 +745,12 @@
       <workItem from="1413650283556" duration="24507000" />
       <workItem from="1413810262615" duration="24408000" />
       <workItem from="1413883214427" duration="33201000" />
-      <workItem from="1413963509046" duration="9917000" />
+      <workItem from="1413963509046" duration="10330000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="118744000" />
+    <option name="totallyTimeSpent" value="119157000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -773,7 +773,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1127,8 +1127,8 @@
         <state vertical-scroll-proportion="-2.7649717" vertical-offset="7666" max-vertical-offset="8551">
           <caret line="327" column="16" selection-start-line="327" selection-start-column="16" selection-end-line="327" selection-end-column="16" />
           <folding>
-            <element signature="e#10153#10154#0" expanded="true" />
-            <element signature="e#10194#10195#0" expanded="true" />
+            <element signature="e#10153#10154#0" expanded="false" />
+            <element signature="e#10194#10195#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1255,8 +1255,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hamstercoders/gnatyuk/server/HttpServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33741647" vertical-offset="37" max-vertical-offset="935">
-          <caret line="34" column="18" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="18" />
+        <state vertical-scroll-proportion="0.62138087" vertical-offset="20" max-vertical-offset="918">
+          <caret line="48" column="56" selection-start-line="48" selection-start-column="56" selection-end-line="48" selection-end-column="56" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

@@ -46,7 +46,6 @@ public final class HttpServer {
             ServerBootstrap b = new ServerBootstrap();
             b.group(bossGroup, workerGroup)
                     .channel(NioServerSocketChannel.class)
-//             .handler(new LoggingHandler(LogLevel.INFO))
                     .childHandler(new HttpServerInitializer(sslCtx));
 
             Channel ch = b.bind(PORT).sync().channel();
