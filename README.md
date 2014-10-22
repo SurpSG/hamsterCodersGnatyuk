@@ -29,3 +29,4 @@ hamsterCodersGnatyuk
 скриншот результата выполнения команды ab – c 100 – n 10000 http://somedomain/status
 
 еще один скриншот станицы /status, но уже после выполнение команды ab из предыдущего пункта
+![Alt text](/relative/path/to/Screenshot AB test 2014-10-22 14.07.21.png?raw=true "AB test")
