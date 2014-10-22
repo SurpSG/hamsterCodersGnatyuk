@@ -35,4 +35,18 @@ hamsterCodersGnatyuk
 ![ScreenShot](https://raw.github.com/SurpSG/hamsterCodersGnatyuk/master/Screenshot status page 2014-10-22 14.17.50.png)
 
 
+Имплементация
+=============
+Создано 4 слушателя для pipeline:
+  - TrafficHandler(унаследован от ChannelTrafficShapingHandler) - сбор статистики;
+      С помощью обьекта TrafficCounter собирается статистика: кол-во считанных байт, кол-во записаных байт, скорость     чтения/записи. Сбор статистики начинается когда вызываеться метод "channelRead" и заканчивается когда вызывается метод "channelReadComplete". Игнорируются запроси на "/favicon.ico" в статистических данных.
+      
+  - HttpRequestDecoder - декодирование потоков байт в HttpRequest
+  - HttpResponseEncoder - кодирование HttpResponse в поток байт
+  - HttpServerHandler(унаследован от SimpleChannelInboundHandler) - обработка HttpRequest и создание ответа - HttpResponse.
+      Создается обьект ResponseFactory, который возвращает обьект AResponse(абстрактный клас для класов HelloWorldResponse, DefaultResponse, RedirectResponse, StatusResponse). С помощью этого обьекта выполняется ответ(response) на запрос(request).
 
+ServerStatistic - клас для сбора статистических данных сервера. Для дизайна этого класа был применен паттерн проектирования - Singleton. Большинство методов этого класа синхронизированы(synchronized) т.к. они работают с общими ресурсами.
+      
+
+  
